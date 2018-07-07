@@ -2,10 +2,10 @@
 
 Setup dependencies:
 	
-	npm install
+	yarn
 
 Run development server
 
-	npm run dev
+	yarn dev
 
 
