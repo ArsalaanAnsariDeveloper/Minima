@@ -6,13 +6,16 @@ const cors = require('cors');
 const app = express();
 const Rehive = require('rehive');
 
+// Configuration for rehive package
+
 var config = {
     apiVersion: 3, 
     apiToken: process.env.RAPI
 }
 
-const myrehive = new Rehive(config);
+const rehive = new Rehive(config);
 
+// Mongo connections, setup environment variables for env to work
 
 mongoose.Promise = require('bluebird');
 
@@ -31,10 +34,32 @@ mongoose.connect(URL)
         process.exit(1);
     });
 
+ function sumUsers(callback){
+    rehive.admin.accounts.get().then(function (res) {
+        var sum = 0;
 
+        for( var i = 0; i < res.results.length; i++){
+            sum += res.results[i].currencies[0].balance;
+        }
+
+        var cur = res.results[0].currencies.currency;
+        
+        console.log(jsonres);
+        var jsonres = {company: "Wave", income : sum, currency: cur }
+
+        callback(jsonres);
+    }, function (err) {
+        console.error(err.stack);
+    });
+
+
+}
 
 
 app.use(express.static('dist'));
 app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 app.get('/app')
+app.get('/api/company', (req, res) => sumUsers(data => {
+    res.end(JSON.stringify(data));
+  }))
 app.listen(8080, () => console.log('Listening on port 8080!'));
