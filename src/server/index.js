@@ -10,7 +10,10 @@ mongoose.Promise = require('bluebird');
 const DBUSER = process.env.DBUSER
 const DBPASS = process.env.DBPASS
 
-/*mongoose.connect('mongodb://<uname>:<pwd>@ds139322.mlab.com:39322/aufinancex')
+var URL = 'mongodb://' + DBUSER + ":" + DBPASS + '@ds139322.mlab.com:39322/aufinancex'
+
+console.log(URL)
+mongoose.connect(URL)
     .then(() => { // if all is ok we will be here
       console.log('Start');
     })
@@ -19,7 +22,7 @@ const DBPASS = process.env.DBPASS
         process.exit(1);
     });
 
-*/
+
 
 app.use(express.static('dist'));
 app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
