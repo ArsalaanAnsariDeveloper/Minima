@@ -10,7 +10,7 @@ mongoose.Promise = require('bluebird');
 const DBUSER = process.env.DBUSER
 const DBPASS = process.env.DBPASS
 
-var URL = 'mongodb://' + DBUSER + ":" + DBPASS + '@ds139322.mlab.com:39322/aufinancex'
+var URL = 'mongodb://' + DBUSER + ":" + DBPASS + '@ds129801.mlab.com:29801/arsalaanrehive'
 
 console.log(URL)
 mongoose.connect(URL)
