@@ -36,16 +36,18 @@ mongoose.connect(URL)
 
  function sumUsers(callback){
     rehive.admin.accounts.get().then(function (res) {
+        console.log(res);
         var sum = 0;
 
         for( var i = 0; i < res.results.length; i++){
             sum += res.results[i].currencies[0].balance;
         }
 
-        var cur = res.results[0].currencies.currency;
+        var cur = res.results[0].currencies[0].currency.description;
+        console.log(cur);
         
         console.log(jsonres);
-        var jsonres = {company: "Wave", income : sum, currency: cur }
+        var jsonres = {company: "Wave", balance : sum, currency: cur }
 
         callback(jsonres);
     }, function (err) {
@@ -55,11 +57,31 @@ mongoose.connect(URL)
 
 }
 
+function userIncome(reference, callback){
+    
+    rehive.admin.accounts.get({reference: reference}).then(function (res) {
+       var user = res.user.email;
+       var bal = res.currencies[0].balance;
+       var cur = res.currencies[0].currency.description;
+
+       console.log(user);
+       console.log(bal);
+       console.log(cur);
+       var jsonres = {username: user, balance : bal , currency: cur };
+       callback(jsonres);
+    }, function (err) {
+        console.error(err.stack)
+    });
+
+}
+
 
 app.use(express.static('dist'));
-app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
 app.get('/app')
 app.get('/api/company', (req, res) => sumUsers(data => {
+    res.end(JSON.stringify(data));
+  }))
+app.get('/api/users/:reference', (req, res) => userIncome(req.params.reference, data => {
     res.end(JSON.stringify(data));
   }))
 app.listen(8080, () => console.log('Listening on port 8080!'));
