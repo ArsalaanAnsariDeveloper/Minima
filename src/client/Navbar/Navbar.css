@@ -1,0 +1,11 @@
+.navWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+.navIcons {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 20%;
+    justify-content: space-around;
+}
