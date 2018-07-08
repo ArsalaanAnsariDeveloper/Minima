@@ -36,7 +36,10 @@ var URL = 'mongodb://' + DBUSER + ":" + DBPASS + '@ds129801.mlab.com:29801/arsal
         var sum = 0;
 
         for( var i = 0; i < res.results.length; i++){
-            sum += res.results[i].currencies[0].balance;
+            if(res.results[i].user.email != "external@gmail.com"){
+                console.log(res.results[i].user.email);
+                sum += res.results[i].currencies[0].balance;
+            }
         }
 
         var cur = res.results[0].currencies[0].currency.description;
@@ -111,7 +114,7 @@ function viewBudgets (callback){
 }
 
 // Make transactions within certain budgets 
-function transactBudget (cat, amt, description,  callback){
+function transactBudget (username, cat, amt, description,  callback){
     MongoClient.connect(URL, function (err, client) {
         console.log("CONNECTED")
         if (err) throw err
@@ -128,8 +131,20 @@ function transactBudget (cat, amt, description,  callback){
         db.collection('transactions').insertOne(transact, function(err, res) {
             if (err) throw err;
             console.log("Transaction Inserted");
-            callback(res);
         });
+        rehive.admin.transactions.createTransfer(
+            {
+                user: username,
+                amount: amt * 100,
+                currency: 'USD',
+                recipient: "external@gmail.com"
+            }).then(function (res) {
+                console.log(res);
+                callback(res)
+            }, function (err) {
+                console.error("Transact Failed")
+                console.error(err)
+            })
                
     });
 }
@@ -196,7 +211,7 @@ app.get('/api/budgets', (req, res) => viewBudgets(data => {
     res.end(JSON.stringify(data));
   }));
 
-app.post('/api/tranb', (req,res) => transactBudget(req.body.type, req.body.amt, req.body.description, data => {
+app.post('/api/tranb', (req,res) => transactBudget(req.body.user, req.body.type, req.body.amt, req.body.description, data => {
     res.end(JSON.stringify(data));
   }))
 
