@@ -1,4 +1,50 @@
+body {
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  background-attachment: fixed;
+  font-family: sans-serif; 
+  color: white;
+}
+
 h1 {
   color: green;
   text-align: center;
+}
+
+.navbar {
+  width: 100%;
+  height: 60px;
+}
+
+.chartComponent {
+  width: 40%;
+  height: 100%;
+  display: inline-block;
+}
+
+.dashComponent {
+  width: 60%;
+  height: 100%;
+  display: inline-block;
+}
+
+.toggle-layer {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.toggle{
+  text-align: center;
+  width: auto;
+  cursor: pointer;
+  user-select: none;
+  font-size: 2rem;
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 0.5rem;
+}
+
+.button.toggle:hover{
+  background: lightgray;
 }
