@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Budget from './Budget';
 import History from './History'
+import Button from '../../Button/Button'
 import './Dashboard.css';
 
 export default class Dashboard extends Component {
@@ -60,6 +61,9 @@ export default class Dashboard extends Component {
           <History
             transHistory = {this.state.trans}
           />
+          <div className = "transactionLink">
+            <Button path="/transaction" text="New Transaction"/>
+          </div>
         </div>
     }
 }
