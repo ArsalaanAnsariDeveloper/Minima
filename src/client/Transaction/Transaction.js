@@ -8,22 +8,15 @@ export default class Transaction extends Component {
 
     render(){
         return <div>
-            <div className = 'transaction-block'>
-                <div className = 'transaction-section'>
-                    Total Company Income
-                </div>
-                <div className = 'transaction-section-value'>
-                    ${this.props.companyIncome}
-                </div>
+            <div className = 'transaction-title'>
+                Create Transaction
             </div>
 
-            <div className = 'transaction-block'>
-            <   div className = 'transaction-section'>
-                    Total Spending Allowance
-                </div>
-                <div className = 'transaction-section-value'>
-                    ${this.props.allowance}
-                </div>
+            <div className = 'transaction-name'>
+                <input type="text" name="name" />
+            </div>
+            <div className = 'transaction-category'>
+                <input type="text" name="name" />
             </div>
         </div>
     }

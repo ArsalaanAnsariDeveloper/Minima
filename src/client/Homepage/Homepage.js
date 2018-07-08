@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import BudgetPie from './BudgetPie/BudgetPie'
 import Dashboard from './Dashboard/Dashboard'
 import Navbar from './Navbar/Navbar'
-import Button from '../Button/Button'
 import './Homepage.css';
 
 export default class Homepage extends Component {

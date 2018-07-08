@@ -49,3 +49,7 @@ table.expenses #titles{
     border-bottom: 1px solid white;
     text-align: left;
 }
+
+.transactionLink {
+    margin: 1rem 0;
+}
