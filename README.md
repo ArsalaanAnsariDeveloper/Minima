@@ -27,3 +27,10 @@ Transaction
 	}
 	
 
+Mongodb budget data model
+
+{
+	"type": "Investment",
+	"balance": 1000
+}
+

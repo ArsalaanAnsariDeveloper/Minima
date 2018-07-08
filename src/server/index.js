@@ -1,10 +1,11 @@
 const express = require('express');
 const os = require('os');
-const mongoose = require('mongoose');
-const cors = require('cors');
 const app = express();
 const Rehive = require('rehive');
 const bodyParser = require('body-parser')
+var MongoClient = require('mongodb').MongoClient
+
+
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -23,22 +24,11 @@ const rehive = new Rehive(config);
 
 // Mongo connections, setup environment variables for env to work
 
-mongoose.Promise = require('bluebird');
 
 const DBUSER = process.env.DBUSER
 const DBPASS = process.env.DBPASS
 
 var URL = 'mongodb://' + DBUSER + ":" + DBPASS + '@ds129801.mlab.com:29801/arsalaanrehive'
-
-console.log(URL)
-mongoose.connect(URL)
-    .then(() => { // if all is ok we will be here
-      console.log('Start');
-    })
-    .catch(err => { // if error we will be here
-        console.error('App starting error:', err.stack);
-        process.exit(1);
-    });
 
  function sumUsers(callback){
     rehive.admin.accounts.get().then(function (res) {
@@ -99,6 +89,25 @@ function userTransact(send, recv, amt, callback){
 }
 
 
+function viewBudgets (callback){
+    MongoClient.connect(URL, function (err, client) {
+        console.log("CONNECTED")
+        if (err) throw err
+      
+        var db = client.db('arsalaanrehive');
+      
+        db.collection('budget_collection').find({}).toArray(function(error, documents) {
+            if (err) throw error;
+            console.log(documents);
+            callback(documents);
+        });
+      });
+    
+}
+
+
+
+
 app.use(express.static('dist'));
 app.get('/app');
 app.get('/api/company', (req, res) => sumUsers(data => {
@@ -112,4 +121,8 @@ app.post('/api/transact', (req,res) =>  {
     userTransact(req.body.send, req.body.recv, req.body.amt, data => {
     res.end(JSON.stringify(data));
   } ) });
+
+app.get('/api/budgets', (req, res) => viewBudgets(data => {
+    res.end(JSON.stringify(data));
+  }));
 app.listen(8080, () => console.log('Listening on port 8080!'));
