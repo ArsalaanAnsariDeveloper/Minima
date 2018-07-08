@@ -29,15 +29,8 @@ export default class Navbar extends Component {
                 You are logged in as {this.state.user}
             </div>
             <div className="navIcons">
-                
-                <div id="add-user">
-                    add user
-                </div>
                 <div id="edit-budget">
                     <Link to='/budget'>edit budget</Link>
-                </div>
-                <div id="settings">
-                    settings
                 </div>
                 <div id= "dashboard">
                     <Link to='/'>dashboard</Link>

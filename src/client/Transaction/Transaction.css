@@ -34,3 +34,46 @@ body {
   .transaction-wrapper input[type=text]:focus,.transaction-wrapper input[type=number]:focus{
     outline: none;
   }
+
+  .transaction-wrapper select {
+    background: transparent;
+    color: white;
+    width: 20%;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border: 2px solid white;
+  }
+
+  .transaction-wrapper select:focus {
+    background: transparent;
+    outline: none;
+  }
+
+  .transaction-wrapper input[type=submit]{
+    display: inline-block;
+    width: auto;
+    height: 2rem;
+    background: rgba(255,255,255,0.2);
+    line-height: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid transparent;
+    transition: background 0.1s;
+    text-transform: uppercase;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .transaction-wrapper input[type=submit]:hover {
+      border: 2px solid white;
+      background: rgba(255,255,255,0.3);
+  }
+
+  .transaction-wrapper input[type=submit]:focus {
+    border: 2px solid lightgray;
+    background: rgba(255,255,255,0.3);
+    outline: none;
+}

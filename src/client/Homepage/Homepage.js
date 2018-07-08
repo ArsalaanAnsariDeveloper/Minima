@@ -27,8 +27,8 @@ export default class Homepage extends Component {
 
         <div className = "chartComponent">
           <BudgetPie 
-            outerRadius={100}
-            innerRadius={75}
+            outerRadius={160}
+            innerRadius={120}
             title="My Budget"/>
         </div>
       </div>
