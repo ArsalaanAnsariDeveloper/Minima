@@ -89,7 +89,7 @@ function userTransact(send, recv, amt, callback){
             console.error(err)
         }).then(function(res){
             var description = "From " + String(send) + " to " + String(recv);
-            transactBudget("user", amt, description, callback);
+            transactBudget(send, "user", amt, description, callback);
         }, function (err) {
             console.error("Transact Failed")
             console.error(err)
