@@ -1,5 +1,6 @@
 import Navbar from '../Homepage/Navbar/Navbar'
 import React, { Component } from 'react';
+import './Budget.css'
 
 
 
@@ -64,11 +65,11 @@ export default class BudgetForm extends Component {
 
     render(){
         return ( 
-        <div>
+        <div className = "budget-form">
         <div className = "navbar">
             <Navbar userID={this.props.userID}/>
         </div>
-        <form className="budget-form" onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
             <label>
               Food Budget:<br/>
               <input type="number" defaultValue={this.state.food} onChange={this.handleFoodChange} />

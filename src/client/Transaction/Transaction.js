@@ -99,24 +99,29 @@ export default class Transaction extends Component {
                 </div>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                    Title<br/>
+                    <br/>Title<br/>
                         <input type="text" defaultValue={this.state.title} onChange={this.handleTitleChange} />
-                    </label><br/>
+                    </label><br/><br/>
 
                     <label>
                     Expense Category<br/>
-                        <input type="text" defaultValue={this.state.category} onChange={this.handleCategoryChange} />
-                    </label><br/>
+                        <select defaultValue={this.state.category} onChange={this.handleCategoryChange}>
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Recreation">Recreation</option>
+                            <option value="Investment">Investment</option>
+                        </select>
+                    </label><br/><br/>
 
                     <label>
                     Amount ($)<br/>
                         <input type="number" defaultValue={this.state.amt} onChange={this.handleAmtChange} />
-                    </label><br/>
+                    </label><br/><br/>
 
                     <label>
                     Recipient<br/>
                         <input type="text" defaultValue={this.state.recipient} onChange={this.handleRecipientChange} />
-                    </label><br/>
+                    </label><br/><br/>
 
                     <input type="submit" value="Submit" />
                 </form>
