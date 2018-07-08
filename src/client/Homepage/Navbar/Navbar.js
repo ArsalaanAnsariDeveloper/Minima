@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
+
 import './Navbar.css'
 
 export default class Navbar extends Component {
@@ -13,7 +15,7 @@ export default class Navbar extends Component {
                     add user
                 </div>
                 <div id="edit-budget">
-                    edit budget
+                    <Link to='/budget'>edit budget</Link>
                 </div>
                 <div id="settings">
                     settings
