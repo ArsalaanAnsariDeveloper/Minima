@@ -1,5 +1,8 @@
-#root {
-  font-family: sans-serif;
+body {
+  background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+  background-attachment: fixed;
+  font-family: sans-serif; 
+  color: white;
 }
 
 h1 {
@@ -8,12 +11,15 @@ h1 {
 }
 
 .chartComponent {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
   width: 40%;
-  height: 600px;
+  height: 100%;
+  display: inline-block;
+}
+
+.dashComponent {
+  width: 60%;
+  height: 100%;
+  display: inline-block;
 }
 
 .toggle-layer {

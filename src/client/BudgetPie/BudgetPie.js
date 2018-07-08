@@ -78,7 +78,6 @@ render() {
             width={this.props.outerRadius * 2}
             height={this.props.outerRadius * 2}>
         </svg>
-        <div className="g-title">{this.props.title}</div>
     </div>
 }
 }

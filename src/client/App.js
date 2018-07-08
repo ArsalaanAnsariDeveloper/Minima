@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import SpendingChart from './BudgetBar/BudgetBar'
 import BudgetPie from './BudgetPie/BudgetPie'
+import Dashboard from './Dashboard'
+import History from './History'
 import './app.css';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: null ,
-    active: 'bar'};
-
-    this.handleClick = this.handleClick.bind(this)
+    this.state = { 
+      username: null 
+    };
   }
 
   componentDidMount() {
@@ -18,17 +18,7 @@ export default class App extends Component {
     //   .then(user => this.setState({ username: user.username }));
   }
 
-  handleClick() {
-      var active = this.state.active;
-      var newActive = active === 'pie' ? 'bar' : 'pie';
-      this.setState({
-          active: newActive
-      });
-      console.log(this.state.active);
-  }
-
   render() {
-    var active = this.state.active;
 
     var companyData = {"company":"Test","income":100,"currency":"USD"};
     var budgetData = [{category:"Food",value:20},
@@ -47,41 +37,23 @@ export default class App extends Component {
 
     return (
       <div>
-          {
-            active === 'pie' 
-            ? <div className = "chartComponent">
-              <BudgetPie 
-                outerRadius={100}
-                innerRadius={80}
-                data={budgetData}
-                title="My Budget Target"/>
-              <BudgetPie
-                outerRadius={100}
-                innerRadius={80}
-                data={spendingData}
-                title="My Current Spending"
-              />
-            </div>
-            : <div className = "chartComponent">
-              <SpendingChart 
-                data1 = {[1,2,3,4]}
-                data2 = {[2,3,4,5]}
-                budgetData={budgetData} 
-                spendingData = {spendingData} 
-                size={[100,100]}
-              />
-            </div>
-          }
-        <div className = "toggle-layer">
-          <div className="button toggle" id="chart-toggle" onClick = {this.handleClick}>
-            {this.state.active === 'pie' ? 'View Bar' : 'View Pie'}
-          </div>
+        <div className = "dashComponent">
+          <Dashboard 
+            companyIncome = {10000}
+            allowance = {3000}
+          />
+          <History
+            transHistory = {['hi','i\'m','broke']}
+          />
         </div>
-        {this.state.username ? (
-          <h1>Hello {this.state.username}</h1>
-        ) : (
-          <h1>Loading.. please wait!</h1>
-        )}
+
+        <div className = "chartComponent">
+          <BudgetPie 
+            outerRadius={100}
+            innerRadius={80}
+            data={budgetData}
+            title="My Budget"/>
+        </div>
       </div>
     );
   }
