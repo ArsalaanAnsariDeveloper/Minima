@@ -4,3 +4,33 @@ body {
     font-family: sans-serif; 
     color: white;
   }
+
+  .transaction-wrapper {
+    padding-left: 10%;
+  }
+
+  .transaction-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+
+  .transaction-wrapper label{
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .transaction-wrapper input[type=text],.transaction-wrapper input[type=number]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    width: 20%;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .transaction-wrapper input[type=text]:focus,.transaction-wrapper input[type=number]:focus{
+    outline: none;
+  }
