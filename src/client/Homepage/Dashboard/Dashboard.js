@@ -31,7 +31,6 @@ export default class Dashboard extends Component {
           (results) => results.json()
         ).then(
           (data) => {
-            this.setState({user:data["username"]})
             this.setState({allowance:data["balance"]})
           }
         )
@@ -45,9 +44,6 @@ export default class Dashboard extends Component {
 
     render(){
         return <div className='dashboard'>
-            <div className = 'user-info'>
-                You are logged in as {this.state.user}
-            </div>
             <div className = 'dashboard-title'>
                 Dashboard
             </div>

@@ -13,6 +13,6 @@ ReactDOM.render(
         <Route exact path= "/transaction" component={Transaction} />
         <Route exact path= "/budget" component={Budget} />
 
-      </div>
-  </Router> 
+       </div>
+   </Router> 
     , document.getElementById('root'));

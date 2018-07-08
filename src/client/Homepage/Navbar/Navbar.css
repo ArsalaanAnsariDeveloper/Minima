@@ -1,12 +1,13 @@
 .navWrapper {
     display: flex;
-    width: 86%;
-    margin-left: 7%;
-    margin-right: 7%;
+    width: 80%;
+    height: 80px;
+    margin-left: 12%;
     padding-top: 20px;
 }
 
 .user-info {
+    margin-top: 2rem;
     width: 70%;
 }
 
