@@ -135,25 +135,48 @@ function transactBudget (cat, amt, description,  callback){
 }
 
 
-    function listtrans (callback){
-        MongoClient.connect(URL, function (err, client) {
-            console.log("CONNECTED")
-            if (err) throw err
-          
-            var db = client.db('arsalaanrehive');
-          
-            db.collection('transactions').find({}, {limit: 5}).sort({$natural: -1}).toArray(function(error, documents) {
-                if (err) throw error;
-                console.log(documents);
-                callback(documents);
+function listtrans (callback){
+    MongoClient.connect(URL, function (err, client) {
+        console.log("CONNECTED")
+        if (err) throw err
+        
+        var db = client.db('arsalaanrehive');
+        
+        db.collection('transactions').find({}, {limit: 5}).sort({$natural: -1}).toArray(function(error, documents) {
+            if (err) throw error;
+            console.log(documents);
+            callback(documents);
+        });
+        });
+}
+
+function editbudget (food, rec, travel, inv, callback){
+    MongoClient.connect(URL, function (err, client) {
+        console.log("CONNECTED")
+        if (err) throw err
+      
+        var db = client.db('arsalaanrehive');
+        var updatedVals = [food, rec, travel, inv];
+        var typeArr = ["Food", "Recreation", "Travel", "Investment"];
+        console.log(typeArr[0]);
+        var amount = 0;
+        for( var i = 0; i < 4; i++){
+            amount = updatedVals[i]
+            if(amount == null){
+                amount = 0
+            }
+            var newvalues = {$set :{balance: amount}};
+            var tranquery = {"type": typeArr[i] };
+            db.collection("budget_collection").updateOne(tranquery, newvalues, function(err, res) {
+                if (err) throw err;
+                console.log("Succesful update");
+                callback(res);
             });
-          });
-    }
+        }
 
+    });
 
-
-
-
+}
 
 app.use(express.static('dist'));
 app.get('/app');
@@ -180,4 +203,8 @@ app.post('/api/tranb', (req,res) => transactBudget(req.body.type, req.body.amt, 
 app.get('/api/listtrans', (req,res) => listtrans(data => {
     res.end(JSON.stringify(data));
   }));
+
+app.post('/api/editbudget', (req,res) => editbudget(req.body.food, req.body.rec, req.body.travel, req.body.inv,  data => {
+    res.end(JSON.stringify(data));
+  }))
 app.listen(8080, () => console.log('Listening on port 8080!'));
