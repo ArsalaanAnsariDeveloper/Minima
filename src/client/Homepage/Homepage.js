@@ -20,7 +20,7 @@ export default class Homepage extends Component {
         <Navbar/>
         </div>
         <div className = "dashComponent">
-        <Dashboard/>
+        <Dashboard userID={this.props.userID}/>
         </div>
 
         <div className = "chartComponent">
