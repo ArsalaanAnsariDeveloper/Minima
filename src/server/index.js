@@ -1,12 +1,18 @@
 const express = require('express');
 const os = require('os');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const Rehive = require('rehive');
-
+const bodyParser = require('body-parser')
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 // Configuration for rehive package
+
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded()); // to support URL-encoded bodies
 
 var config = {
     apiVersion: 3, 
@@ -47,7 +53,7 @@ mongoose.connect(URL)
         console.log(cur);
         
         console.log(jsonres);
-        var jsonres = {company: "Wave", balance : sum, currency: cur }
+        var jsonres = {company: "Wave", balance : sum/100, currency: cur }
 
         callback(jsonres);
     }, function (err) {
@@ -67,7 +73,7 @@ function userIncome(reference, callback){
        console.log(user);
        console.log(bal);
        console.log(cur);
-       var jsonres = {username: user, balance : bal , currency: cur };
+       var jsonres = {username: user, balance : bal/100 , currency: cur };
        callback(jsonres);
     }, function (err) {
         console.error(err.stack)
@@ -75,13 +81,35 @@ function userIncome(reference, callback){
 
 }
 
+function userTransact(send, recv, amt, callback){
+    
+    rehive.admin.transactions.createTransfer(
+        {
+            user: send,
+            amount: amt,
+            currency: 'USD',
+            recipient: recv
+        }).then(function (res) {
+            console.log(res)
+            callback(res);
+        }, function (err) {
+            console.error("Transact Failed")
+            console.error(err)
+        });
+}
+
 
 app.use(express.static('dist'));
-app.get('/app')
+app.get('/app');
 app.get('/api/company', (req, res) => sumUsers(data => {
     res.end(JSON.stringify(data));
-  }))
+  }));
 app.get('/api/users/:reference', (req, res) => userIncome(req.params.reference, data => {
     res.end(JSON.stringify(data));
-  }))
+  }));
+app.post('/api/transact', (req,res) =>  {  
+    console.log(req.body);
+    userTransact(req.body.send, req.body.recv, req.body.amt, data => {
+    res.end(JSON.stringify(data));
+  } ) });
 app.listen(8080, () => console.log('Listening on port 8080!'));
