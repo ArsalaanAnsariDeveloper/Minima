@@ -6,11 +6,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 ReactDOM.render(
-    <Router>
-      <div>
-        <Route exact path= "/" component={Homepage} />
-        <Route exact path= "/transaction" component={Transaction} />
+//     <Router>
+//       <div>
+//         <Route exact path= "/" component={Homepage} />
+//         <Route exact path= "/transaction" component={Transaction} />
 
-      </div>
-  </Router> 
+//       </div>
+//   </Router> 
+    <Transaction/>
     , document.getElementById('root'));

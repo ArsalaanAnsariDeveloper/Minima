@@ -11,7 +11,7 @@ export default class Button extends Component {
     render(){
         return <div>
             <div className="round-button">
-                <Link to='/transaction'>New Transaction</Link>
+                {/* <Link to='/transaction'>New Transaction</Link> */}
             </div>
         </div>
     }
