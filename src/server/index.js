@@ -76,18 +76,24 @@ function userTransact(send, recv, amt, callback){
     rehive.admin.transactions.createTransfer(
         {
             user: send,
-            amount: amt,
+            amount: amt * 100,
             currency: 'USD',
             recipient: recv
         }).then(function (res) {
-            console.log(res)
-            callback(res);
+            console.log(res);
         }, function (err) {
             console.error("Transact Failed")
             console.error(err)
-        });
+        }).then(function(res){
+            var description = "From " + String(send) + " to " + String(recv);
+            transactBudget("user", amt, description, callback);
+        }, function (err) {
+            console.error("Transact Failed")
+            console.error(err)
+        })
 }
 
+// Views budgets for all 
 
 function viewBudgets (callback){
     MongoClient.connect(URL, function (err, client) {
@@ -102,8 +108,49 @@ function viewBudgets (callback){
             callback(documents);
         });
       });
-    
 }
+
+// Make transactions within certain budgets 
+function transactBudget (cat, amt, description,  callback){
+    MongoClient.connect(URL, function (err, client) {
+        console.log("CONNECTED")
+        if (err) throw err
+      
+        var db = client.db('arsalaanrehive');
+        var tranquery = {type: cat };
+        var newvalues = {$inc: {balance: amt * -1}}
+  
+        db.collection("budget_collection").updateOne(tranquery, newvalues, function(err, res) {
+            if (err) throw err;
+            console.log("Doc Updated")
+        })
+        var transact = {"type" : cat , "amt": amt, "description": description};
+        db.collection('transactions').insertOne(transact, function(err, res) {
+            if (err) throw err;
+            console.log("Transaction Inserted");
+            callback(res);
+        });
+               
+    });
+}
+
+
+    function listtrans (callback){
+        MongoClient.connect(URL, function (err, client) {
+            console.log("CONNECTED")
+            if (err) throw err
+          
+            var db = client.db('arsalaanrehive');
+          
+            db.collection('transactions').find({}, {limit: 5}).sort({$natural: -1}).toArray(function(error, documents) {
+                if (err) throw error;
+                console.log(documents);
+                callback(documents);
+            });
+          });
+    }
+
+
 
 
 
@@ -123,6 +170,14 @@ app.post('/api/transact', (req,res) =>  {
   } ) });
 
 app.get('/api/budgets', (req, res) => viewBudgets(data => {
+    res.end(JSON.stringify(data));
+  }));
+
+app.post('/api/tranb', (req,res) => transactBudget(req.body.type, req.body.amt, req.body.description, data => {
+    res.end(JSON.stringify(data));
+  }))
+
+app.get('/api/listtrans', (req,res) => listtrans(data => {
     res.end(JSON.stringify(data));
   }));
 app.listen(8080, () => console.log('Listening on port 8080!'));
