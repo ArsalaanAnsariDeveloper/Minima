@@ -1,4 +1,6 @@
+import Navbar from '../Homepage/Navbar/Navbar'
 import React, { Component } from 'react';
+
 
 
 export default class Dashboard extends Component {
@@ -25,24 +27,30 @@ export default class Dashboard extends Component {
 
     render(){
         return ( 
+        <div>
+        <div className = "navbar">
+            <Navbar/>
+        </div>
         <form onSubmit={this.handleSubmit}>
             <label>
               Food Budget:
-              <input type="number" value={this.state.food} onChange={this.handleChange} />
+              <input type="number" defaultValue={this.state.food} onChange={this.handleChange} />
             </label>
             <label>
               Travel Budget:
-              <input type="number" value={this.state.travel} onChange={this.handleChange} />
+              <input type="number" defaultValue={this.state.travel} onChange={this.handleChange} />
             </label>
             <label>
               Recreation Budget:
-              <input type="number" value={this.state.rec} onChange={this.handleChange} />
+              <input type="number" defaultValue={this.state.rec} onChange={this.handleChange} />
             </label>
             <label>
               Investment Budget:
-              <input type= "number" value={this.state.inv} onChange={this.handleChange} />
+              <input type= "number" defaultValue={this.state.inv} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
-        </form>);
+        </form> 
+        </div>
+        );
     }
 }

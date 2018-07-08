@@ -11,6 +11,7 @@ export default class Navbar extends Component {
     render(){
         return <div className="navWrapper">
             <div className="navIcons">
+                
                 <div id="add-user">
                     add user
                 </div>
@@ -19,6 +20,10 @@ export default class Navbar extends Component {
                 </div>
                 <div id="settings">
                     settings
+                </div>
+                <div id= "dashboard">
+                    <Link to='/'>dashboard</Link>
+
                 </div>
             </div>
         </div>
