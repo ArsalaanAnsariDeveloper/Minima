@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 
 
-export default class Dashboard extends Component {
+export default class BudgetForm extends Component {
     constructor(props) {
         super(props);
         this.state = {food: '', travel: '', rec: '', inv : ''};
@@ -44,7 +44,7 @@ export default class Dashboard extends Component {
         return ( 
         <div>
         <div className = "navbar">
-            <Navbar/>
+            <Navbar userID={this.props.userID}/>
         </div>
         <form className="budget-form" onSubmit={this.handleSubmit}>
             <label>
@@ -69,3 +69,7 @@ export default class Dashboard extends Component {
         );
     }
 }
+
+BudgetForm.defaultProps = {
+    userID:"4W442QBG9Q"
+  }
