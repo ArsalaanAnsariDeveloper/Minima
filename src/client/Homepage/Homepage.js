@@ -17,10 +17,10 @@ export default class Homepage extends Component {
     return (
       <div>
         <div className = "navbar">
-        <Navbar/>
+        <Navbar userID={this.props.userID}/>
         </div>
         <div className = "dashComponent">
-        <Dashboard userID={this.props.userID}/>
+        <Dashboard/>
         </div>
 
         <div className = "chartComponent">
@@ -28,11 +28,6 @@ export default class Homepage extends Component {
             outerRadius={100}
             innerRadius={75}
             title="My Budget"/>
-        </div>
-
-
-        <div className = "transactionLink">
-          <Button path="/transaction" text="New Transaction"/>
         </div>
       </div>
     );
