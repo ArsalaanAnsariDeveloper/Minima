@@ -3,7 +3,7 @@ import {
     Route
 } from 'react-router-dom';
 
-import Homepage from "./Homepage/Homepage
+import Homepage from "./Homepage/Homepage"
 
 const navRoutes = (
     <div>

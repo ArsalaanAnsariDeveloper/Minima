@@ -1,16 +1,26 @@
 .navWrapper {
     display: flex;
-    flex-direction: row-reverse;
-    width: 86%;
-    margin-left: 7%;
-    margin-right: 7%;
+    width: 80%;
+    height: 80px;
+    margin-left: 12%;
     padding-top: 20px;
 }
+
+.user-info {
+    margin-top: 2rem;
+    width: 70%;
+}
+
 .navIcons {
     display: flex;
     flex-direction: row-reverse;
     width: 30%;
     justify-content: space-around;
+}
+
+.navIcons a{
+    color:inherit;
+    text-decoration: none;
 }
 
 .navIcons > div {
