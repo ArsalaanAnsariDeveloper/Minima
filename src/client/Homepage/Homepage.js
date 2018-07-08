@@ -31,6 +31,7 @@ export default class Homepage extends Component {
             title="My Budget"/>
         </div>
 
+
         <div className = "transactionLink">
           <Button path="/transaction" text="New Transaction"/>
         </div>
