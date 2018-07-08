@@ -25,7 +25,7 @@ export default class Dashboard extends Component {
         ).then(
           (data) => {this.setState({companyBudget:data["balance"]})}
         )
-        fetch('/api/users/43E8T5RSFN')
+        fetch('/api/users/'+this.props.userID)
         .then(
           (results) => results.json()
         ).then(
