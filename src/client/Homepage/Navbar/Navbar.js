@@ -10,6 +10,9 @@ export default class Navbar extends Component {
 
     render(){
         return <div className="navWrapper">
+            <div className = 'user-info'>
+                You are logged in as {this.props.user}
+            </div>
             <div className="navIcons">
                 
                 <div id="add-user">

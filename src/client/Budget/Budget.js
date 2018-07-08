@@ -8,12 +8,27 @@ export default class Dashboard extends Component {
         super(props);
         this.state = {food: '', travel: '', rec: '', inv : ''};
     
-        this.handleChange = this.handleChange.bind(this);
+        this.handleFoodChange = this.handleFoodChange.bind(this);
+        this.handleTravelChange = this.handleTravelChange.bind(this);
+        this.handleRecChange = this.handleRecChange.bind(this);
+        this.handleInvChange = this.handleInvChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
     
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleFoodChange(event) {
+        this.setState({food: event.target.value});
+    }
+
+    handleTravelChange(event) {
+        this.setState({travel: event.target.value});
+    }
+
+    handleRecChange(event) {
+        this.setState({rec: event.target.value});
+    }
+
+    handleInvChange(event) {
+        this.setState({inv: event.target.value});
     }
 
     componentDidMount() {
@@ -21,7 +36,7 @@ export default class Dashboard extends Component {
     }
 
     handleSubmit(){
-        console.log(this.state.food);
+        alert(this.state.food+this.state.travel+this.state.rec+this.state.inv);
         
     }
 
@@ -31,23 +46,23 @@ export default class Dashboard extends Component {
         <div className = "navbar">
             <Navbar/>
         </div>
-        <form onSubmit={this.handleSubmit}>
+        <form className="budget-form" onSubmit={this.handleSubmit}>
             <label>
-              Food Budget:
-              <input type="number" defaultValue={this.state.food} onChange={this.handleChange} />
-            </label>
+              Food Budget:<br/>
+              <input type="number" defaultValue={this.state.food} onChange={this.handleFoodChange} />
+            </label><br/>
             <label>
-              Travel Budget:
-              <input type="number" defaultValue={this.state.travel} onChange={this.handleChange} />
-            </label>
+              Travel Budget:<br/>
+              <input type="number" defaultValue={this.state.travel} onChange={this.handleTravelChange} />
+            </label><br/>
             <label>
-              Recreation Budget:
-              <input type="number" defaultValue={this.state.rec} onChange={this.handleChange} />
-            </label>
+              Recreation Budget:<br/>
+              <input type="number" defaultValue={this.state.rec} onChange={this.handleRecChange} />
+            </label><br/>
             <label>
-              Investment Budget:
-              <input type= "number" defaultValue={this.state.inv} onChange={this.handleChange} />
-            </label>
+              Investment Budget:<br/>
+              <input type= "number" defaultValue={this.state.inv} onChange={this.handleInvChange} />
+            </label><br/>
             <input type="submit" value="Submit" />
         </form> 
         </div>
