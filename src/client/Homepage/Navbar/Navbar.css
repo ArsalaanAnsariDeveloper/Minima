@@ -1,0 +1,25 @@
+.navWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 86%;
+    margin-left: 7%;
+    margin-right: 7%;
+    padding-top: 20px;
+}
+.navIcons {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 30%;
+    justify-content: space-around;
+}
+
+.navIcons > div {
+    user-select: none;
+    cursor: pointer;
+    height: 1.2rem;
+    border-bottom: 1px solid white;
+}
+
+.navIcons > div:hover {
+    border-bottom: 2px solid white;
+}
