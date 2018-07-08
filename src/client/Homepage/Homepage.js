@@ -29,6 +29,11 @@ export default class Homepage extends Component {
             innerRadius={75}
             title="My Budget"/>
         </div>
+
+
+        <div className = "transactionLink">
+          <Button path="/transaction" text="New Transaction"/>
+        </div>
       </div>
     );
   }
