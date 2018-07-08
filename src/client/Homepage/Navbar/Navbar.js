@@ -7,8 +7,8 @@ export default class Navbar extends Component {
     }
 
     render(){
-        return <div class="navWrapper">
-            <div class="navIcons">
+        return <div className="navWrapper">
+            <div className="navIcons">
                 <div id="add-user">
                     add user
                 </div>
