@@ -73,7 +73,6 @@ export default class Transaction extends Component {
                 return(response.json)
               });
         }else{
-            alert(JSON.stringify(dataExt))
             fetch('/api/tranb', {
                 method: 'POST',
                 headers: myHeaders,
