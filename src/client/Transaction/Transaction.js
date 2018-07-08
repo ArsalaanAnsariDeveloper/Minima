@@ -11,7 +11,7 @@ export default class Transaction extends Component {
             category: "",
             amt: 0,
             recipient: "",
-            user: "krl2134+user@columbia.edu"
+            user: "arsalaanfacebook@gmail.com"
         }
         
         this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -39,21 +39,50 @@ export default class Transaction extends Component {
     }
 
     handleSubmit(event) {
-        alert(this.state.title+this.state.category+this.state.amt+this.state.recipient);
+        
+        
         event.preventDefault();
+
+        var myHeaders = new Headers();
+
+        myHeaders.append('Content-Type', 'application/json');
+
         var dataUser =  {
-            "send": this.state.user,
-            "recv": this.state.recipient,
-            "amt": this.state.amt    
+            send : this.state.user,
+            recv : this.state.recipient,
+            amt : parseInt(this.state.amt)    
           }
 
-        if(this.state.category ==  "user"){
-            fetch('/api/transact' , {
-                method: 'post',
+        var dataExt = {
+            user : this.state.user,
+            type : this.state.category,
+            amt : parseInt(this.state.amt),
+            description: this.state.title
+        }
+
+        
+
+        if(this.state.category ===  "user"){
+            fetch('/api/transact', {
+                method: 'POST',
+                headers: myHeaders,
+                mode: 'cors',
+                cache: 'default',
                 body: JSON.stringify(dataUser)
-              }).then(function(response) {
-                console.log(response.json());
-            });
+              }).then(function(response) {     
+                return(response.json)
+              });
+        }else{
+            fetch('/api/tranb', {
+                method: 'POST',
+                headers: myHeaders,
+                mode: 'cors',
+                cache: 'default',
+                body: JSON.stringify(dataExt)
+              }).then(function(response) {   
+                console.log(response.json)
+                return(response.json)
+              });
         }
         
 

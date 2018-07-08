@@ -7,7 +7,7 @@ import './Budget.css'
 export default class BudgetForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {food: '', travel: '', rec: '', inv : ''};
+        this.state = {food: 0, travel: 0, rec: 0, inv : 0};
     
         this.handleFoodChange = this.handleFoodChange.bind(this);
         this.handleTravelChange = this.handleTravelChange.bind(this);
@@ -37,8 +37,30 @@ export default class BudgetForm extends Component {
     }
 
     handleSubmit(){
-        alert(this.state.food+this.state.travel+this.state.rec+this.state.inv);
+
+        var myHeaders = new Headers();
+
+        myHeaders.append('Content-Type', 'application/json');
+
+        var data = {
+            food : parseInt(this.state.food),
+            rec: parseInt(this.state.rec),
+            travel: parseInt(this.state.travel),
+            inv: parseInt(this.state.inv)
+        }
+
+        fetch('/api/editbudget', {
+            method: 'POST',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default',
+            body: JSON.stringify(data)
+          }).then(function(response) {
+            
+            return(response.json)
+          });
         
+
     }
 
     render(){
