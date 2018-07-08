@@ -1,4 +1,39 @@
+#root {
+  font-family: sans-serif;
+}
+
 h1 {
   color: green;
   text-align: center;
+}
+
+.chartComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+  height: 600px;
+}
+
+.toggle-layer {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button.toggle{
+  text-align: center;
+  width: auto;
+  cursor: pointer;
+  user-select: none;
+  font-size: 2rem;
+  border: 2px solid black;
+  border-radius: 2rem;
+  padding: 0.5rem;
+}
+
+.button.toggle:hover{
+  background: lightgray;
 }
