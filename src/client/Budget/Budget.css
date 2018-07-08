@@ -3,8 +3,81 @@ body {
     background-attachment: fixed;
     font-family: sans-serif; 
     color: white;
+  }
+
+  .budget-form {
+    padding-left: 10%;
+  }
+
+  .transaction-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+
+  .budget-form label{
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .budget-form input[type=text],.budget-form input[type=number]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid white;
+    color: white;
+    width: 20%;
+    height: 2rem;
+    font-size: 1.5rem;
+  }
+
+  .budget-form input[type=text]:focus,.budget-form input[type=number]:focus{
+    outline: none;
+  }
+
+  .budget-form select {
+    background: transparent;
+    color: white;
+    width: 20%;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    border: 2px solid white;
+  }
+
+  .budget-form select:focus {
+    background: transparent;
+    outline: none;
+  }
+
+  .budget-form input[type=submit]{
+    display: inline-block;
+    width: auto;
+    height: 2rem;
+    background: rgba(255,255,255,0.2);
+    line-height: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid transparent;
+    transition: background 0.1s;
+    text-transform: uppercase;
+    color: white;
+    font-size: 1rem;
+  }
+
+  .budget-form input[type=submit]:hover {
+      border: 2px solid white;
+      background: rgba(255,255,255,0.3);
+  }
+
+  .budget-form input[type=submit]:focus {
+    border: 2px solid lightgray;
+    background: rgba(255,255,255,0.3);
+    outline: none;
 }
 
-.budget-form>label {
-    display: block;
+.budget-form br{
+    height: 2rem;
 }
