@@ -31,6 +31,7 @@ export default class Dashboard extends Component {
           (results) => results.json()
         ).then(
           (data) => {
+            this.setState({user:data["username"]})
             this.setState({allowance:data["balance"]})
           }
         )

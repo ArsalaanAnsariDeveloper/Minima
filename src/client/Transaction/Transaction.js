@@ -109,6 +109,7 @@ export default class Transaction extends Component {
                             <option value="Travel">Travel</option>
                             <option value="Recreation">Recreation</option>
                             <option value="Investment">Investment</option>
+                            <option value="user">User</option>
                         </select>
                     </label><br/><br/>
 
