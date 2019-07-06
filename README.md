@@ -1,4 +1,4 @@
-# Minima
+# Minima ---
 
 ## What is Minima? 
 
